@@ -9,13 +9,16 @@
 import UIKit
 
 
-class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var moviesTableView: UITableView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+
     var movies: [NSDictionary]?
     var refreshControl:UIRefreshControl!
-
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,8 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.moviesTableView.addSubview(refreshControl)
+        
+        
 
     }
     
@@ -66,6 +71,7 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.titleLabel.text = movie["title"] as? String
         cell.synopsisLabel.text = movie["synopsis"] as? String
         let url = NSURL(string: movie.valueForKeyPath("posters.thumbnail")as! String)!
+        
         cell.posterImage.setImageWithURL(url)
         return cell
      }
@@ -83,7 +89,7 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let movieDetails = segue.destinationViewController as! MovieDetailsViewController
         movieDetails.movie = movie
     }
-
+    
     func networkErrorAlert(){
         let actionSheetController: UIAlertController = UIAlertController(title: "Network error❗️", message: "Network connect has error. Please check you wifi connection then try again. Thank you!", preferredStyle: .Alert)
         let okButton: UIAlertAction = UIAlertAction(title: "OK", style: .Cancel) {action -> Void in
