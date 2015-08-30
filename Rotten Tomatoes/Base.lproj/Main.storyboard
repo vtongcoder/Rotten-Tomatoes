@@ -65,7 +65,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Box Office" id="gMY-Nw-9w9"/>
+                    <tabBarItem key="tabBarItem" title="Box Office" image="Movies" id="gMY-Nw-9w9"/>
                     <navigationItem key="navigationItem" id="d7V-hs-MPz"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="aZ0-3x-iud" id="Kdo-Zg-tSv"/>
@@ -185,7 +185,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Top DVDs" id="ame-3C-js8"/>
+                    <tabBarItem key="tabBarItem" title="Top DVDs" image="DVD" id="ame-3C-js8"/>
                     <connections>
                         <outlet property="dvdListTableView" destination="vgu-0i-ddT" id="VLg-Oy-vjA"/>
                         <outlet property="loadingIndicator" destination="sTU-0g-zpQ" id="lhC-Yc-uTc"/>
@@ -238,12 +238,16 @@
             <point key="canvasLocation" x="654" y="352"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DVD" width="44" height="44"/>
+        <image name="Movies" width="44" height="44"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jhL-Jw-vfn"/>
+        <segue reference="iZn-6M-eT3"/>
     </inferredMetricsTieBreakers>
 </document>
