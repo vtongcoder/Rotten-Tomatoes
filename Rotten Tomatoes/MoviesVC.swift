@@ -8,57 +8,48 @@
 
 import UIKit
 
+
 class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var moviesTableView: UITableView!
     var movies: [NSDictionary]?
-    
+    var refreshControl:UIRefreshControl!
+
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadingIndicator.startAnimating()
         
-        let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")!
-        let request = NSURLRequest(URL: url)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            
-            if response != nil {
-            let httpResponse: NSHTTPURLResponse = (response as! NSHTTPURLResponse?)!
-            let code = httpResponse.statusCode
-            
-            if (error == nil && code == 200)
-            {
-                self.loadingIndicator.stopAnimating()
-                let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
-                if let json = json {
-                    self.movies = json["movies"] as? [NSDictionary]
-                    self.moviesTableView.reloadData()
-                }
-            } else {
-                println("Error: \(error.code)")
-            }
-            }
-        }
         AFNetworkReachabilityManager.sharedManager().startMonitoring()
         AFNetworkReachabilityManager.sharedManager().setReachabilityStatusChangeBlock{(status: AFNetworkReachabilityStatus) -> Void in
-            
             switch status.hashValue{
             case AFNetworkReachabilityStatus.NotReachable.hashValue:
                 println("Not reachable")
-                    self.networkErrorAlert()
+                self.networkErrorAlert()
             case AFNetworkReachabilityStatus.ReachableViaWiFi.hashValue, AFNetworkReachabilityStatus.ReachableViaWWAN.hashValue:
                 println("Reachable")
+                self.getInformation()
             default:
                 println("Unknown status")
             }
         }
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.moviesTableView.addSubview(refreshControl)
+
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func refresh(sender:AnyObject)
+    {
+        self.getInformation()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,5 +92,33 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         actionSheetController.addAction(okButton)
         self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
+    func getInformation() {
+        loadingIndicator.startAnimating()
+        let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")!
+        let request = NSURLRequest(URL: url)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            
+            if response != nil {
+                let httpResponse: NSHTTPURLResponse = (response as! NSHTTPURLResponse?)!
+                let code = httpResponse.statusCode
+                
+                if (error == nil && code == 200)
+                {
+                    self.loadingIndicator.stopAnimating()
+                    self.refreshControl.endRefreshing()
+                    
+                    let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
+                    if let json = json {
+                        self.movies = json["movies"] as? [NSDictionary]
+                        self.moviesTableView.reloadData()
+                    }
+                } else {
+                    println("Error: \(error.code)")
+                }
+            }
+        }
+        
+    }
+    
     
 }

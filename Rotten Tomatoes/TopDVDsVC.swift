@@ -14,29 +14,13 @@ class TopDVDsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var dvds:[NSDictionary]?
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-
+    
+    var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")!
-        let request = NSURLRequest(URL: url)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            if response != nil {
-                let httpResponse: NSHTTPURLResponse = response as! NSHTTPURLResponse
-                let code = httpResponse.statusCode
-                if (error == nil && code == 200)
-                {
-                    self.loadingIndicator.stopAnimating()
-                    let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
-                    if let json = json {
-                        self.dvds = json["movies"] as? [NSDictionary]
-                        self.dvdListTableView.reloadData()
-                    }
-                } else {
-                    println("Error: \(error.code)")
-                }
-            }
-        }
+
+        
         AFNetworkReachabilityManager.sharedManager().startMonitoring()
         AFNetworkReachabilityManager.sharedManager().setReachabilityStatusChangeBlock{(status: AFNetworkReachabilityStatus) -> Void in
             switch status.hashValue{
@@ -45,16 +29,27 @@ class TopDVDsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 self.networkErrorAlert()
             case AFNetworkReachabilityStatus.ReachableViaWiFi.hashValue, AFNetworkReachabilityStatus.ReachableViaWWAN.hashValue:
                 println("Reachable")
+                self.getInformation()
+
             default:
                 println("Unknown status")
             }
         }
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:",  forControlEvents: UIControlEvents.ValueChanged)
+        dvdListTableView.addSubview(refreshControl)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func refresh(sender:AnyObject)
+    {
+        self.getInformation()
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let dvds = self.dvds {
             return dvds.count
@@ -96,6 +91,31 @@ class TopDVDsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         actionSheetController.addAction(okButton)
         self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
+    func getInformation(){
+        loadingIndicator.startAnimating()
 
+        let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")!
+        let request = NSURLRequest(URL: url)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            if response != nil {
+                let httpResponse: NSHTTPURLResponse = response as! NSHTTPURLResponse
+                let code = httpResponse.statusCode
+                if (error == nil && code == 200)
+                {
+                    self.loadingIndicator.stopAnimating()
+                    self.refreshControl.endRefreshing()
+                    
+                    let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
+                    if let json = json {
+                        self.dvds = json["movies"] as? [NSDictionary]
+                        self.dvdListTableView.reloadData()
+                    }
+                } else {
+                    println("Error: \(error.code)")
+                }
+            }
+        }
+
+    }
 
 }
