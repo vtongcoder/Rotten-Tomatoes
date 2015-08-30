@@ -28,9 +28,7 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             }
             
         }
-        moviesTableView.dataSource = self
-        moviesTableView.delegate = self
-        
+               
     }
 
     override func didReceiveMemoryWarning() {

@@ -9,7 +9,10 @@
 import UIKit
 
 class TopDVDsVC: UIViewController {
+    @IBOutlet weak var dvdListTableView: UITableView!
 
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
