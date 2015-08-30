@@ -46,8 +46,9 @@ class TopDVDsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let dvd = dvds![indexPath.row]
         cell.dvdTitleLabel.text = dvd["title"] as? String
         cell.dvdSynopsisLabel.text = dvd["synopsis"] as? String
-        let url = NSURL(string: dvd.valueForKeyPath("posters.thumbnail")as! String)!
+        var url = NSURL(string: dvd.valueForKeyPath("posters.thumbnail")as! String)!
         cell.dvdPosterImage.setImageWithURL(url)
+        
         return cell
     }
     
