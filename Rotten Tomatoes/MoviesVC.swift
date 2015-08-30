@@ -18,17 +18,40 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        loadingIndicator.startAnimating()
+        
         let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")!
         let request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-                    let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
-//            println(json)
-            if let json = json {
-                self.movies = json["movies"] as? [NSDictionary]
-                self.moviesTableView.reloadData()
+            let httpResponse: NSHTTPURLResponse = response as! NSHTTPURLResponse
+            let code = httpResponse.statusCode
+            
+            
+            if (error == nil && code == 200)
+            {
+                self.loadingIndicator.stopAnimating()
+                let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
+                if let json = json {
+                    self.movies = json["movies"] as? [NSDictionary]
+                    self.moviesTableView.reloadData()
+                }
+            } else {
+                println("Error: \(error.code)")
             }
         }
-               
+        AFNetworkReachabilityManager.sharedManager().startMonitoring()
+        AFNetworkReachabilityManager.sharedManager().setReachabilityStatusChangeBlock{(status: AFNetworkReachabilityStatus) -> Void in
+            
+            switch status.hashValue{
+            case AFNetworkReachabilityStatus.NotReachable.hashValue:
+                println("Not reachable")
+                
+            case AFNetworkReachabilityStatus.ReachableViaWiFi.hashValue, AFNetworkReachabilityStatus.ReachableViaWWAN.hashValue:
+                println("Reachable")
+            default:
+                println("Unknown status")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
