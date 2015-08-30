@@ -26,7 +26,6 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 self.movies = json["movies"] as? [NSDictionary]
                 self.moviesTableView.reloadData()
             }
-            
         }
                
     }

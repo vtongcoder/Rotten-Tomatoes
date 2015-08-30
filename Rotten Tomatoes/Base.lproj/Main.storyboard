@@ -131,7 +131,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dvdCell" rowHeight="99" id="UEp-LB-8Yp">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DVDCell" rowHeight="99" id="UEp-LB-8Yp" customClass="dvdCellTableViewCell" customModule="Rotten_Tomatoes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="86" width="320" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UEp-LB-8Yp" id="aPF-Tp-COJ">
@@ -158,17 +158,24 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dvdPosterImage" destination="3im-29-DUa" id="AbZ-Yt-TVG"/>
+                                            <outlet property="dvdSynopsisLabel" destination="dZJ-ww-b7M" id="BuQ-N0-LGX"/>
+                                            <outlet property="dvdTitleLabel" destination="51N-eC-EA8" id="1zq-Eq-MAH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xiV-ef-iBz" id="q6Z-BE-8s9"/>
+                                    <outlet property="delegate" destination="xiV-ef-iBz" id="mUU-9D-hLA"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Top DVDs" id="ame-3C-js8"/>
                     <connections>
-                        <outlet property="dvdPoster" destination="3im-29-DUa" id="A5T-mo-cCT"/>
-                        <outlet property="dvdSynopsisLabel" destination="dZJ-ww-b7M" id="Mzb-WK-WFe"/>
-                        <outlet property="dvdTitleLabel" destination="51N-eC-EA8" id="Jme-Vo-7Nd"/>
+                        <outlet property="dvdListTableView" destination="vgu-0i-ddT" id="VLg-Oy-vjA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ide-yR-oET" userLabel="First Responder" sceneMemberID="firstResponder"/>

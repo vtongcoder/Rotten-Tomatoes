@@ -10,6 +10,10 @@ import UIKit
 
 class dvdCellTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var dvdTitleLabel: UILabel!
+    @IBOutlet weak var dvdSynopsisLabel: UILabel!
+    @IBOutlet weak var dvdPosterImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
