@@ -12,7 +12,8 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var moviesTableView: UITableView!
     var movies: [NSDictionary]?
-
+    
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

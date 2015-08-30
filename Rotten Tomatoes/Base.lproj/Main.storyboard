@@ -57,12 +57,17 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="a1C-u4-0LV"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="aZ0-3x-iud" userLabel="Loading indicator">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Box Office" id="gMY-Nw-9w9"/>
                     <navigationItem key="navigationItem" id="d7V-hs-MPz"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="aZ0-3x-iud" id="Kdo-Zg-tSv"/>
                         <outlet property="moviesTableView" destination="LIU-4O-mPM" id="bG9-XA-Gbx"/>
                     </connections>
                 </viewController>
@@ -232,6 +237,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="iZn-6M-eT3"/>
+        <segue reference="jhL-Jw-vfn"/>
     </inferredMetricsTieBreakers>
 </document>
