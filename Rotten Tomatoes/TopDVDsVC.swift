@@ -56,14 +56,15 @@ class TopDVDsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
 
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       let cell = sender as! UITableViewCell
+        let indexPath = dvdListTableView.indexPathForCell(cell)
+        let dvd = dvds![indexPath!.row]
+        let movieDetails = segue.destinationViewController as! MovieDetailsViewController
+        movieDetails.movie = dvd
     }
-    */
 
 }
