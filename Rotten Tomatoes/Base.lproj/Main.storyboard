@@ -177,12 +177,18 @@
                                     <outlet property="delegate" destination="xiV-ef-iBz" id="mUU-9D-hLA"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="sTU-0g-zpQ" userLabel="Loading indicator">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Top DVDs" id="ame-3C-js8"/>
                     <connections>
                         <outlet property="dvdListTableView" destination="vgu-0i-ddT" id="VLg-Oy-vjA"/>
+                        <outlet property="loadingIndicator" destination="sTU-0g-zpQ" id="lhC-Yc-uTc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ide-yR-oET" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -238,6 +244,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jhL-Jw-vfn"/>
+        <segue reference="iZn-6M-eT3"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -23,9 +23,10 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")!
         let request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            let httpResponse: NSHTTPURLResponse = response as! NSHTTPURLResponse
-            let code = httpResponse.statusCode
             
+            if response != nil {
+            let httpResponse: NSHTTPURLResponse = (response as! NSHTTPURLResponse?)!
+            let code = httpResponse.statusCode
             
             if (error == nil && code == 200)
             {
@@ -38,6 +39,7 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             } else {
                 println("Error: \(error.code)")
             }
+            }
         }
         AFNetworkReachabilityManager.sharedManager().startMonitoring()
         AFNetworkReachabilityManager.sharedManager().setReachabilityStatusChangeBlock{(status: AFNetworkReachabilityStatus) -> Void in
@@ -45,7 +47,7 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             switch status.hashValue{
             case AFNetworkReachabilityStatus.NotReachable.hashValue:
                 println("Not reachable")
-                
+                    self.networkErrorAlert()
             case AFNetworkReachabilityStatus.ReachableViaWiFi.hashValue, AFNetworkReachabilityStatus.ReachableViaWWAN.hashValue:
                 println("Reachable")
             default:
@@ -91,5 +93,13 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         movieDetails.movie = movie
     }
 
+    func networkErrorAlert(){
+        let actionSheetController: UIAlertController = UIAlertController(title: "Network error❗️", message: "Network connect has error. Please check you wifi connection then try again. Thank you!", preferredStyle: .Alert)
+        let okButton: UIAlertAction = UIAlertAction(title: "OK", style: .Cancel) {action -> Void in
+              self.loadingIndicator.stopAnimating()
+        }
+        actionSheetController.addAction(okButton)
+        self.presentViewController(actionSheetController, animated: true, completion: nil)
+    }
     
 }
