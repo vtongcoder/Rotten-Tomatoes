@@ -28,14 +28,14 @@
                                                     <rect key="frame" x="102" y="40" width="218" height="56.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bzN-Yz-h7h">
                                                     <rect key="frame" x="102" y="8" width="210" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fNd-cD-Gse">
@@ -44,6 +44,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="posterImage" destination="fNd-cD-Gse" id="gWj-wV-9si"/>
                                             <outlet property="synopsisLabel" destination="5mU-h2-PvE" id="Zce-FO-eVc"/>
@@ -57,12 +58,18 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="a1C-u4-0LV"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="aZ0-3x-iud" userLabel="Loading indicator">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Box Office" id="gMY-Nw-9w9"/>
-                    <navigationItem key="navigationItem" id="d7V-hs-MPz"/>
+                    <tabBarItem key="tabBarItem" title="Box Office" image="Movies" id="gMY-Nw-9w9"/>
+                    <navigationItem key="navigationItem" title="Movies List" id="d7V-hs-MPz"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="aZ0-3x-iud" id="Kdo-Zg-tSv"/>
                         <outlet property="moviesTableView" destination="LIU-4O-mPM" id="bG9-XA-Gbx"/>
                     </connections>
                 </viewController>
@@ -94,7 +101,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zeF-FI-8ji">
-                                        <rect key="frame" x="0.0" y="68" width="320" height="220"/>
+                                        <rect key="frame" x="8" y="68" width="304" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -116,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95y-Nt-axI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1566" y="70"/>
+            <point key="canvasLocation" x="1647" y="367"/>
         </scene>
         <!--DVD List-->
         <scene sceneID="ivp-wv-ai4">
@@ -126,38 +133,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="vgu-0i-ddT">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="190" sectionHeaderHeight="22" sectionFooterHeight="22" id="vgu-0i-ddT">
                                 <rect key="frame" x="0.0" y="55" width="320" height="467"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DVDCell" rowHeight="99" id="UEp-LB-8Yp" customClass="dvdCellTableViewCell" customModule="Rotten_Tomatoes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="99"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DVDCell" rowHeight="190" id="UEp-LB-8Yp" customClass="dvdCellTableViewCell" customModule="Rotten_Tomatoes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UEp-LB-8Yp" id="aPF-Tp-COJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="98.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="189.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="51N-eC-EA8">
-                                                    <rect key="frame" x="98" y="8" width="189" height="21"/>
+                                                    <rect key="frame" x="16" y="150" width="271" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3im-29-DUa">
-                                                    <rect key="frame" x="8" y="4" width="90" height="94.5"/>
+                                                    <rect key="frame" x="8" y="4" width="104" height="131.5"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dZJ-ww-b7M">
-                                                    <rect key="frame" x="98" y="37" width="182" height="61.5"/>
+                                                    <rect key="frame" x="122" y="4" width="165" height="131.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="dvdPosterImage" destination="3im-29-DUa" id="AbZ-Yt-TVG"/>
                                             <outlet property="dvdSynopsisLabel" destination="dZJ-ww-b7M" id="BuQ-N0-LGX"/>
@@ -171,12 +180,19 @@
                                     <outlet property="delegate" destination="xiV-ef-iBz" id="mUU-9D-hLA"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="sTU-0g-zpQ" userLabel="Loading indicator">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Top DVDs" id="ame-3C-js8"/>
+                    <tabBarItem key="tabBarItem" title="Top DVDs" image="DVD" id="ame-3C-js8"/>
+                    <navigationItem key="navigationItem" title="Top DVDs" id="5Jz-uF-FQf"/>
                     <connections>
                         <outlet property="dvdListTableView" destination="vgu-0i-ddT" id="VLg-Oy-vjA"/>
+                        <outlet property="loadingIndicator" destination="sTU-0g-zpQ" id="lhC-Yc-uTc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ide-yR-oET" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -188,10 +204,10 @@
             <objects>
                 <navigationController title="Main" automaticallyAdjustsScrollViewInsets="NO" id="Xpt-hu-Zqk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="97d-Rd-f5N">
+                    <navigationBar key="navigationBar" alpha="0.74999999999999978" contentMode="scaleToFill" barStyle="black" id="97d-Rd-f5N">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.16078431369999999" green="0.57254901960000004" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -205,16 +221,17 @@
             </objects>
             <point key="canvasLocation" x="122" y="352"/>
         </scene>
-        <!--Movies List-->
+        <!--Movies-->
         <scene sceneID="dep-du-fOa">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bHW-wI-mEw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Movies List" id="T5p-3j-LU0"/>
+                    <navigationItem key="navigationItem" title="Movies" id="T5p-3j-LU0"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="gLE-JX-MHc">
+                    <tabBar key="tabBar" alpha="0.74999999999999978" contentMode="scaleToFill" barStyle="black" id="gLE-JX-MHc">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="1Ri-Xm-G3e"/>
@@ -226,6 +243,10 @@
             <point key="canvasLocation" x="654" y="352"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DVD" width="22" height="22"/>
+        <image name="Movies" width="22" height="22"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
