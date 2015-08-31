@@ -11,7 +11,7 @@ Time spent: `<18 hours>`
 - [x] User can view a list of movies. Poster images load asynchronously.
 - [x] User can view movie details by tapping on a cell.
 - [x] User sees loading state while waiting for the API.
-- [x] User sees error message when there is a network error: https://github.com/vtongcoder/Rotten-Tomatoes/blob/master/NetworkError.png
+- [x] User sees error message when there is a network error: (NetworkError.png)
 - [x] User can pull to refresh the movie list.
 
 #### Optional
