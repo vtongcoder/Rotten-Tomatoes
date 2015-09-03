@@ -99,7 +99,8 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
     func getInformation() {
-        loadingIndicator.startAnimating()
+//        loadingIndicator.startAnimating()
+        JTProgressHUD.show()
         let url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")!
         let request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
@@ -110,7 +111,8 @@ class MoviesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
                 
                 if (error == nil && code == 200)
                 {
-                    self.loadingIndicator.stopAnimating()
+//                    self.loadingIndicator.stopAnimating()
+                    JTProgressHUD.hide()
                     self.refreshControl.endRefreshing()
                     
                     let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
