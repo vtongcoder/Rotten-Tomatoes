@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rotten Tomatoes/MoviesVC.swift"
+            timestampString = "462612374.187845"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "MoviesVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Rotten_Tomatoes.MoviesVC.refreshControl.setter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIRefreshControl&gt;"
+                  moduleName = "Rotten Tomatoes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Work/Developer/SwiftCourse-CoderSchool.vn/CodePath/Week01/Rotten%20Tomatoes/Rotten%20Tomatoes/MoviesVC.swift"
+                  timestampString = "462612374.520436"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Rotten_Tomatoes.MoviesVC.refreshControl.materializeForSet : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIRefreshControl&gt;"
+                  moduleName = "Rotten Tomatoes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Work/Developer/SwiftCourse-CoderSchool.vn/CodePath/Week01/Rotten%20Tomatoes/Rotten%20Tomatoes/MoviesVC.swift"
+                  timestampString = "462612374.520602"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Rotten_Tomatoes.MoviesVC.init (Rotten_Tomatoes.MoviesVC.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; Rotten_Tomatoes.MoviesVC"
+                  moduleName = "Rotten Tomatoes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Work/Developer/SwiftCourse-CoderSchool.vn/CodePath/Week01/Rotten%20Tomatoes/Rotten%20Tomatoes/MoviesVC.swift"
+                  timestampString = "462612374.520789"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "239">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Rotten_Tomatoes.MoviesVC.init (Rotten_Tomatoes.MoviesVC.Type)(coder : ObjectiveC.NSCoder) -&gt; Rotten_Tomatoes.MoviesVC"
+                  moduleName = "Rotten Tomatoes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Work/Developer/SwiftCourse-CoderSchool.vn/CodePath/Week01/Rotten%20Tomatoes/Rotten%20Tomatoes/MoviesVC.swift"
+                  timestampString = "462612374.520912"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "162">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
